@@ -1,7 +1,6 @@
 'use client';
 
-import { useMemo, useEffect, useState, useRef, JSXElementConstructor, PromiseLikeOfReactNode, ReactElement, ReactFragment, ReactPortal } from 'react';
-import dynamic from "next/dynamic"
+import { useMemo, useEffect, useState, useRef, JSXElementConstructor, ReactElement, ReactFragment, ReactPortal } from 'react';
 import { usePapaParse } from 'react-papaparse';
 import { TData } from "@/types/Table";
 
@@ -48,7 +47,7 @@ export default function Home() {
       field: "title",
       width: 600,
       filter: true,
-      cellRenderer: (params: { data: { url: string | undefined; title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | PromiseLikeOfReactNode | null | undefined; }; }) => {
+      cellRenderer: (params: { data: { url: string | undefined; title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }; }) => {
         return (
           <a href={params.data.url}>{params.data.title}</a>
         );
@@ -130,7 +129,7 @@ export default function Home() {
   return (
     <>
     <p className="font-mono bg-pink-200/75 text-4xl tracking-wide underline decoration-pink-500 decoration-4">
-    @yude/books
+    books
     </p>
     <p>
       インターネット・本棚
@@ -139,7 +138,7 @@ export default function Home() {
     <form className="bg-white rounded px-8 pt-6 pb-4" onSubmit={e => { e.preventDefault(); }}>
       <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="search_query" type="text" value={filterText} onChange={handleFilterUpdate} placeholder="書籍を検索..." />
     </form>
-    <div style={{ height: `${useHeight() - 230}px`}}>
+    <div style={{ height: `${useHeight() - 150}px`}}>
     {books && gridRef && 
     
     <AgGridReact
@@ -148,10 +147,6 @@ export default function Home() {
         className="ag-theme-alpine"
     />
     }
-    </div>
-    <div className="text-center">
-    <p className="underline"><a href="https://github.com/yude/books">GitHub リポジトリ</a></p>
-    <p className="underline"><a href="https://github.com/yude/books/blob/main/public/books.csv">CSV データ</a></p>
     </div>
     </>
   )

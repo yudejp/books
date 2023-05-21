@@ -1,7 +1,7 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'yude の本棚',
+  title: '本棚',
   description: 'Managing my books',
 }
 
